@@ -2,6 +2,11 @@
 
 En este pequeño repo intentaré demostrar que siempre es mejor *Vanilla* a través de tres elementos que se encontrarán a continuación, 1. performance, 2. legibilidad (o sintaxis) y 3. tamaño en la compilación con webpack, trataré de ser lo más objetivo posible pero si usted como lector puede aportar a esta interesante discusión, no dude ni un segundo y envíe su aporte, ya sea como un _issue_ o por email. 
 
+*¿Cómo se hará la evaluación?*
+En la sección de performance se evaluarán una serie de funciones que procesarán algunos datos, de la manera en que se haría usando cada tecnología, así se establecerá cuál tiene una mayor velocidad de procesamiento, aunque dejo claro que en la última prueba no tuve una respuesta tan satisfactoria debido a que las pruebas variaban de respuesta por cada vez que se corría el test aunque en promedio es como se muestra en la imagen, no sé si porque las funciones son asíncronas, esto más adelante lo ejecutaré en otro sistema para probarlos mejor.
+En la sección de sintaxis lo que se evalúa es *¿Cuál es la mejor forma que podemos entender el código?*, puesto que la idea de usar librerías es poder tener una sintaxis clara a la hora de crear nuestro código.
+Y por último en la sección de empaquetamiento se evalúa ya en producción qué resulta mejor, pues recuerden que siempre queremos velocidad a la hora de mostrar nuestras aplicaciones. 
+
 ## Empecemos
 
 Al contrario de lo que algunos plantean acerca de la preferencia de usar una librería como _lodash_ o _ramda_ en vez de usar funciones nativas, mi punto de vista se centra en que esto no es cierto, por múltiples razones que serán expuestas a continuación *es mejor siempre utilizar vanilla*.
@@ -18,7 +23,6 @@ En el momento de creado este test las versiones de cada tecnología usada son:
 - *ramda*: 0.25.0
 - ECMA-262
 - Chrome 62.0.3202.94
-- uglifyjs-webpack-plugin 1.1.1
 - uglifyjs-webpack-plugin 1.1.1
 - webpack 3.8.1
 - https://jsperf.com
