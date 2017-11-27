@@ -30,24 +30,29 @@ En el momento de creado este test las versiones de cada tecnología usada son:
 * `js/data_process`: Procesamiento de una lista de tareas que son optenidas del servidor, o por lo menos se simula ello. https://jsperf.com/data-processing-with-ramada-vanilla-and-lodash/1
 ### Respuesta código performance
 #### Respuesta performance 1
+![resultados squeare](js/map_sum_square/results.PNG)
 Un mapeo sencillo, podemos observar la enorme ventaja de *vanilla* (imperativo, funcional) y *lodash* frente a *ramda*, puesto que en este caso no necesitamos funciones currificadas.
 Más adelante explicamos por qué la diferencia en estos resultados.
 
 #### Respuesta performance 2
+![resultados numbers](js/map_numbers/results.PNG)
 En el mapeo, como podemos ver, Vanilla imperativo es el GANADOR!. Pero, ¿a qué se debe esto? Según el siguiente test la mejor forma de tener velocidad en un recorrido de arreglos es con la función recursiva while. https://jsperf.com/fastest-array-loops-in-javascript/32
 
-*Lodash* por su parte en su [map](https://github.com/lodash/lodash/blob/master/map.js) lo implementa de la mejor forma, por ello no se queda atrás en la prueba de velocidad, pero *lodashFP* sí se queda atrás. *Además, LodashFP no hace bien la tarea porque el mapeo no tiene como encontrar el index del arreglo.* (Ya he hecho un issue de ello para que lo mejoren https://github.com/lodash/lodash/issues/3519)
+*Lodash* por su parte en su [map](https://github.com/lodash/lodash/blob/master/map.js) lo implementa de la mejor forma, por ello no se queda atrás en la prueba de velocidad, pero *lodashFP* sí se queda atrás. *Además, LodashFP no hace bien la tarea porque el mapeo no tiene como encontrar el index del arreglo.* (Ya he hecho un issue de ello para que lo mejoren https://github.com/lodash/lodash/issues/3519), `Edit:` La respuesta fue que sedebía deshabilitar una opción de las propiedades funcionales del framework, es decir que quedaría sin su parte funcional completamente.
 Pero, ¿por qué entonces el [map](https://github.com/ramda/ramda/blob/v0.25.0/source/map.js) de *RamdaJS* es más lento? debido a que realmente todo Ramda es orientado a la programación funcional, todas estas funciones están currificadas y no se necesita importar dos librerías por aparte, por lo que si vemos el código nos encontraremos con más cosas de las que tiene *Lodash*, lo que en casos minimalistas y que no trabajemos con funciones currificadas hace a lodash más atractivo. Por lo anterior de ahora en adelante omitiremos las pruebas de _ramda curry_.
 
 Por cierto, Vanilla FP también obtuvo muy buenos resultados, en dos simples líneas de código, sin importar nada adicional.
 
 #### Respuesta performance 3
+![resultados objects](js/map_collections_objects/results.PNG)
 De nuevo tenemos al gran ganador *Vanilla* imperativo, pero casi siempre en segundo lugar encontramos su parte *Funcional*. Ya en esta etapa podemos ir analizando que cuando son pequeñas tareas, como mapeos sencillos de un array de números o strings *Vanilla Imperativo* y *Lodash* son de lo mejor, pero en tareas medianas y/o grandes de procesamiento *Lodash* comienza a hacerse a un lado y da paso a *Vanilla Funcional*. Ramda, lastimosamente por ser completamente funcional en estas tareas se queda corto y no juega un papel importante en el performance.
 
 #### Respuesta performance 4
+![resultados loteria](js/calculo_loteria/results.PNG)
 ¿Quién fue el ganador?, de nuevo *Vanilla*, esta función es un poco diferente a las demás, porque necesita recursividad. Pero creo que sigo refutando el planteamiento de que _usar cualquier framework siempre es mejor que "nativo"_, pues no es así, y lo hemos visto. Ahora, sigamos probando con mayores procesos.
 
 #### Respuesta performance 5
+![resultados proceso de datos](js/data_process/results.PNG)
 Podemos observar que dependiendo de nuestras necesidades, por ejemplo recorrer arreglos, si queremos una alta velocidad en el procesamiento, podemos hacer dos cosas, crear en nuestro propio código una función que recorra más rápido que el `.map` de *Vanilla* o importar una librería, pero la segunda opción no es lo mejor, por uso, tamaño del código y que siempre tendrá problemas para algunas de nuestras tareas, por lo cual necesitaremos otras librerías y así el código se va volviendo un "frankenstein". Y de hecho el código escrito con *ECMA 262* resulta siendo también muy rápido y en muchas ocasiones más que las librerías que se dicen ser más rápidas.
 
 *Conslusión sobre Performance*
