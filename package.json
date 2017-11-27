@@ -1,0 +1,34 @@
+{
+  "name": "vanillabetter",
+  "version": "0.0.1",
+  "description": "Vanilla always better",
+  "main": "index.js",
+  "scripts": {
+    "build:lodashfp": "webpack --env.FOLDER=data_process --config webpack.config.js --progress --display-error-details --color --env.FILE=lodashfp ",
+    "build:lodash": "webpack --env.FOLDER=data_process --config webpack.config.js --progress --display-error-details --color --env.FILE=lodash ",
+    "build:ramda": "webpack --env.FOLDER=data_process --config webpack.config.js --progress --display-error-details --color --env.FILE=ramda ",
+    "build:es6": "webpack --env.FOLDER=data_process --config webpack.config.js --progress --display-error-details --color --env.FILE=es6 ",
+    "build": "npm run build:es6 && npm run build:ramda && npm run build:lodash && npm run build:lodashfp"
+  },
+  "author": {
+    "name": "William Penagos",
+    "email": "info@williampenagos.com",
+    "url": "https://williampenagos.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "clean-webpack-plugin": "^0.1.17",
+    "cross-env": "^5.1.1",
+    "eslint-loader": "^1.9.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^1.1.1",
+    "webpack": "^3.8.1",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "ramda": "^0.25.0"
+  }
+}

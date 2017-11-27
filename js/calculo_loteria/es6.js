@@ -1,0 +1,1 @@
+export const NativeFunctionalOdds = (n, p, acc) => (n === 0) ? acc : NativeFunctionalOdds(n - 1, p - 1, (n / p) * acc)
