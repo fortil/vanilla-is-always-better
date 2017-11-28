@@ -1,9 +1,9 @@
 # Siempre es mejor Vanilla
-<pre>
+<code>
 La idea en este repositorio no es ser fanático a Vanilla, se pretende demostrar que antes era necesario usar librerías que principalmente volvían nuestro código más legible y pudiesemos acceder a funciones sin que este se volviera espagueti. Ahora, al igual que todos los otros lenguajes de programación, JavaScript tiene sus nuevas versiones pero a diferencia de los demás no debemos actualizar el compilador, sino actualizar el Browser y la versión de NodeJS.
 
 Lastimosamente aún hay muchos browsers que no se actualizan a los estandares de JavaScript ni habilitan las nuevas características de la web, por ello como programadores debemos de seguir transpilando nuestro código.
-</pre>
+</code>
 
 En este pequeño repo se intentará demostrar que siempre es mejor **Vanilla** a través de tres elementos que se encontrarán a continuación, 1. performance, 2. legibilidad (o sintaxis) y 3. tamaño en la compilación con webpack, se pretende ser lo más objetivo posible, pero si usted como lector puede aportar a esta interesante discusión, no dude ni un segundo y envíe su aporte, ya sea como un _issue_ o por email. 
 
