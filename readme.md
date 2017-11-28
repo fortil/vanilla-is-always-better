@@ -38,13 +38,15 @@ En el momento de creado este test las versiones de cada tecnología usada son:
 * `js/map_collections_objects`: Mapeo de objetos, en esta ocasión se combinan las dos anteriores donde se crea una lista con cada tecnología, posteriormente se mapea para convertirse en objeto nuevo y por último cada número de cada objeto es convertido al cuadrado de su valor. https://jsperf.com/map-of-objects-vanilla-ramda-and-lodash/1
 * `js/calculo_loteria`: Una función que sirve para saber la probabilidad de ganarse la lotería. https://jsperf.com/probability-wins-lottery/1
 * `js/data_process`: Procesamiento de una lista de tareas que son optenidas del servidor, o por lo menos se simula ello. https://jsperf.com/data-processing-with-ramada-vanilla-and-lodash/1
+* `pick`: Test de velocidad para la función **pick**, la cual devuelve un objeto nuevo con las propiedades deseadas. https://jsperf.com/pick-between-lodash-ramda-y-vanilla/1
+
 ### Respuesta código performance
-#### Respuesta performance 1
+#### Respuesta performance 1 `js/map_sum_square`
 ![resultados squeare](js/map_sum_square/results.PNG)
 Un mapeo sencillo, podemos observar la enorme ventaja de **vanilla** (imperativo, funcional) y **lodash** frente a **ramda**, puesto que en este caso no necesitamos funciones currificadas.
 Más adelante explicamos por qué la diferencia en estos resultados.
 
-#### Respuesta performance 2
+#### Respuesta performance 2 `js/map_numbers`
 ![resultados numbers](js/map_numbers/results.PNG)
 En el mapeo, como podemos ver, Vanilla imperativo es el GANADOR!. Pero, ¿a qué se debe esto? Según el siguiente test la mejor forma de tener velocidad en un recorrido de arreglos es con la función recursiva while. https://jsperf.com/fastest-array-loops-in-javascript/32
 
@@ -53,17 +55,21 @@ Pero, ¿por qué entonces el [map](https://github.com/ramda/ramda/blob/v0.25.0/s
 
 Por cierto, Vanilla FP también obtuvo muy buenos resultados, en dos simples líneas de código, sin importar nada adicional.
 
-#### Respuesta performance 3
+#### Respuesta performance 3 `js/map_collections_objects`
 ![resultados objects](js/map_collections_objects/results.PNG)
 De nuevo tenemos al gran ganador **Vanilla** imperativo, pero casi siempre en segundo lugar encontramos su parte **Funcional**. Ya en esta etapa podemos ir analizando que cuando son pequeñas tareas, como mapeos sencillos de un array de números o strings **Vanilla Imperativo** y **Lodash** son de lo mejor, pero en tareas medianas y/o grandes de procesamiento **Lodash** comienza a hacerse a un lado y da paso a **Vanilla Funcional**. Ramda, lastimosamente por ser completamente funcional en estas tareas se queda corto y no juega un papel importante en el performance.
 
-#### Respuesta performance 4
+#### Respuesta performance 4 `js/calculo_loteria`
 ![resultados loteria](js/calculo_loteria/results.PNG)
 ¿Quién fue el ganador?, de nuevo **Vanilla**, esta función es un poco diferente a las demás, porque necesita recursividad. Pero creo que sigo refutando el planteamiento de que _usar cualquier framework siempre es mejor que "nativo"_, pues no es así, y lo hemos visto. Ahora, sigamos probando con mayores procesos.
 
-#### Respuesta performance 5
+#### Respuesta performance 5 `js/data_process`
 ![resultados proceso de datos](js/data_process/results.PNG)
 Podemos observar que dependiendo de nuestras necesidades, por ejemplo recorrer arreglos, si queremos una alta velocidad en el procesamiento, podemos hacer dos cosas, crear en nuestro propio código una función que recorra más rápido que el `.map` de **Vanilla** o importar una librería, pero la segunda opción no es lo mejor, por uso, tamaño del código y que siempre tendrá problemas para algunas de nuestras tareas, por lo cual necesitaremos otras librerías y así el código se va volviendo un "frankenstein". Y de hecho el código escrito con **ECMA 262** resulta siendo también muy rápido y en muchas ocasiones más que las librerías que se dicen ser más rápidas.
+
+#### Respuesta performance 6 `pick`
+![resultados proceso de datos](js/pick.PNG)
+En este caso **Ramda** fue el gran ganador, seguido de **Vanilla** estilo funcional, pero _¿por qué?_ si vemos el código de las funciones de las librerías encontramos las funciones recursivas, estas hacen una [llamada de optimización a la cola](http://2ality.com/2015/06/tail-call-optimization.html) y por ende se crea una función más veloz.
 
 **Conslusión sobre Performance**
 
